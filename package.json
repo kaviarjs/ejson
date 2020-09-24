@@ -1,6 +1,6 @@
 {
   "name": "@kaviar/ejson",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Kaviar EJSON Typescript from Meteor",
   "main": "dist/index.js",
   "repository": {
