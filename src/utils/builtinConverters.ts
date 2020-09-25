@@ -1,8 +1,24 @@
 import { isObject, keysOf, isInfOrNaN, hasOwn, lengthOf } from "../utilities";
 import { Base64 } from "../base64";
 import { EJSON } from "../ejson";
+import ObjectId from "bson-objectid";
 
 export const builtinConverters = [
+  {
+    // ObjectId
+    matchJSONValue(obj) {
+      return hasOwn(obj, "$objectId") && lengthOf(obj) === 1;
+    },
+    matchObject(obj) {
+      return obj instanceof ObjectId;
+    },
+    toJSONValue(obj: ObjectId) {
+      return { $objectId: obj.toString() };
+    },
+    fromJSONValue(obj) {
+      return new ObjectId(obj.$objectId);
+    },
+  },
   {
     // Date
     matchJSONValue(obj) {
