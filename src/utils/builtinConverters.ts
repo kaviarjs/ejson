@@ -10,7 +10,15 @@ export const builtinConverters = [
       return hasOwn(obj, "$objectId") && lengthOf(obj) === 1;
     },
     matchObject(obj) {
-      return obj instanceof ObjectId;
+      if (obj instanceof ObjectId) {
+        return true;
+      }
+      if (ObjectId.isValid(obj)) {
+        return true;
+      }
+      if (obj?._bsontype === "ObjectID") {
+        return true;
+      }
     },
     toJSONValue(obj: ObjectId) {
       return { $objectId: obj.toString() };

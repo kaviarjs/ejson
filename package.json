@@ -1,6 +1,6 @@
 {
   "name": "@kaviar/ejson",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Kaviar EJSON Typescript from Meteor",
   "main": "dist/index.js",
   "repository": {
@@ -27,7 +27,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.12",
     "@types/chai-as-promised": "^7.1.2",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^25.2.3",
     "@types/node": "^8.0.28",
     "@typescript-eslint/eslint-plugin": "2.3.0",
     "@typescript-eslint/parser": "2.3.0",

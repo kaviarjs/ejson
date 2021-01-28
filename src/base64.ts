@@ -3,23 +3,27 @@ export const Base64 = {
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
 
   encode: function (string) {
-    var characters = Base64.characters;
-    var result = "";
+    const characters = Base64.characters;
+    let result = "";
 
-    var i = 0;
+    if (typeof string !== "string") {
+      string = string.toString();
+    }
+
+    let i = 0;
     do {
-      var a = string.charCodeAt(i++);
-      var b = string.charCodeAt(i++);
-      var c = string.charCodeAt(i++);
+      let a = string.charCodeAt(i++);
+      let b = string.charCodeAt(i++);
+      let c = string.charCodeAt(i++);
 
       a = a ? a : 0;
       b = b ? b : 0;
       c = c ? c : 0;
 
-      var b1 = (a >> 2) & 0x3f;
-      var b2 = ((a & 0x3) << 4) | ((b >> 4) & 0xf);
-      var b3 = ((b & 0xf) << 2) | ((c >> 6) & 0x3);
-      var b4 = c & 0x3f;
+      const b1 = (a >> 2) & 0x3f;
+      const b2 = ((a & 0x3) << 4) | ((b >> 4) & 0xf);
+      let b3 = ((b & 0xf) << 2) | ((c >> 6) & 0x3);
+      let b4 = c & 0x3f;
 
       if (!b) {
         b3 = b4 = 64;
@@ -38,19 +42,19 @@ export const Base64 = {
   },
 
   decode: function (string) {
-    var characters = Base64.characters;
-    var result = "";
+    const characters = Base64.characters;
+    let result = "";
 
-    var i = 0;
+    let i = 0;
     do {
-      var b1 = Base64.characters.indexOf(string.charAt(i++));
-      var b2 = Base64.characters.indexOf(string.charAt(i++));
-      var b3 = Base64.characters.indexOf(string.charAt(i++));
-      var b4 = Base64.characters.indexOf(string.charAt(i++));
+      const b1 = Base64.characters.indexOf(string.charAt(i++));
+      const b2 = Base64.characters.indexOf(string.charAt(i++));
+      const b3 = Base64.characters.indexOf(string.charAt(i++));
+      const b4 = Base64.characters.indexOf(string.charAt(i++));
 
-      var a = ((b1 & 0x3f) << 2) | ((b2 >> 4) & 0x3);
-      var b = ((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf);
-      var c = ((b3 & 0x3) << 6) | (b4 & 0x3f);
+      const a = ((b1 & 0x3f) << 2) | ((b2 >> 4) & 0x3);
+      const b = ((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf);
+      const c = ((b3 & 0x3) << 6) | (b4 & 0x3f);
 
       result +=
         String.fromCharCode(a) +

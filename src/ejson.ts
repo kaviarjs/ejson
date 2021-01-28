@@ -14,6 +14,7 @@ import { adjustTypesFromJSONValue } from "./utils/adjustTypesFromJSONValue";
 import { toJSONValueHelper } from "./utils/toJSONValueHelper";
 import { adjustTypesToJSONValue } from "./utils/adjustTypesToJSONValue";
 import { builtinConverters } from "./utils/builtinConverters";
+import ObjectId from "bson-objectid";
 
 export class EJSON {
   static customTypes = new Map();
@@ -306,6 +307,10 @@ export class EJSON {
     // RegExps are not really EJSON elements (eg we don't define a serialization
     // for them), but they're immutable anyway, so we can support them in clone.
     if (v instanceof RegExp) {
+      return v;
+    }
+
+    if (ObjectId.isValid(v)) {
       return v;
     }
 
