@@ -14,7 +14,7 @@ import { adjustTypesFromJSONValue } from "./utils/adjustTypesFromJSONValue";
 import { toJSONValueHelper } from "./utils/toJSONValueHelper";
 import { adjustTypesToJSONValue } from "./utils/adjustTypesToJSONValue";
 import { builtinConverters } from "./utils/builtinConverters";
-import ObjectId from "bson-objectid";
+import { ObjectId } from "./ObjectId";
 
 export class EJSON {
   static customTypes = new Map();
@@ -310,9 +310,9 @@ export class EJSON {
       return v;
     }
 
-    if (ObjectId.isValid(v)) {
-      return v;
-    }
+    // if (ObjectId.isValid(v)) {
+    //   return v;
+    // }
 
     if (EJSON.isBinary(v)) {
       ret = EJSON.newBinary(v.length);
