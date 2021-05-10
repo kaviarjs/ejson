@@ -303,7 +303,7 @@ test('ejson - handle objects with properties named "length"', () => {
   assert.deepEqual(widget, clonedWidget);
 });
 
-test.only("should work with objectid and plainToClass", () => {
+test("should work with objectid and plainToClass", () => {
   class A {
     id;
   }
