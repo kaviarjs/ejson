@@ -25,6 +25,28 @@ npm install --save @kaviar/ejson
 Follow the official documentation here:
 https://docs.meteor.com/api/ejson.html
 
+## Extra
+
+An easy way to transform an object into a class instance.
+
+```ts
+import { toModel } from "@kaviar/ejson";
+
+class Person {
+  firstname: string;
+  lastname: string;
+
+  get fullname() {
+    return `${this.firstname} ${this.lastname}`;
+  }
+}
+
+toModel(Person, {
+  firstname: "John",
+  lastname: "Smith",
+});
+```
+
 ## Support
 
 This package is part of [KaviarJS](https://www.kaviarjs.com) family. If you enjoy this work please show your support by starring [the main package](https://github.com/kaviarjs/kaviar). If not, let us know what can we do to deserve it, [our feedback form is here](https://forms.gle/DTMg5Urgqey9QqLFA)

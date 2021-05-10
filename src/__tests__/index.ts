@@ -1,6 +1,8 @@
 import { EJSON } from "../ejson";
 import * as EJSONTest from "./custom_model";
 import { assert } from "chai";
+import { ObjectId } from "..";
+import { toModel } from "../toModel";
 
 test("ejson - keyOrderSensitive", () => {
   assert.isTrue(
@@ -299,4 +301,16 @@ test('ejson - handle objects with properties named "length"', () => {
   const clonedWidget = EJSON.clone(widget);
 
   assert.deepEqual(widget, clonedWidget);
+});
+
+test.only("should work with objectid and plainToClass", () => {
+  class A {
+    id;
+  }
+  const obj = {
+    id: new ObjectId(),
+  };
+  const instance = toModel(A, obj);
+  expect(instance).toBeInstanceOf(A);
+  expect(instance.id.toString()).toEqual(obj.id.toString());
 });
