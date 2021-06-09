@@ -1,4 +1,4 @@
-This is EJSON copied and adapted to TypeScript from Meteor. It's a great way to use JSON to pass binaries and serialize/deserialize any type of data with ease. We use it to easily serialise/deserialise our objects while maintaining important objects such as dates, object ids, regexp etc.
+EJSON is a great way to use JSON to pass binaries and serialize/deserialize any type of data with ease. We use it to easily serialise/deserialise our objects while maintaining important objects such as dates, object ids, regexp etc.
 
 ## Install
 
@@ -6,10 +6,29 @@ This is EJSON copied and adapted to TypeScript from Meteor. It's a great way to 
 npm install --save @kaviar/ejson
 ```
 
-## [Documentation](./DOCUMENTATION.md)
+## [Documentation](https://docs.meteor.com/api/ejson.html)
 
-[Click here to go to the documentation](./DOCUMENTATION.md)
+Follow the official and complete documentation here:
+https://docs.meteor.com/api/ejson.html
 
-## Support
+## Extra
 
-This package is part of [KaviarJS](https://www.kaviarjs.com) family. If you enjoy this work please show your support by starring [the main package](https://github.com/kaviarjs/kaviar). If not, let us know what can we do to deserve it, [our feedback form is here](https://forms.gle/DTMg5Urgqey9QqLFA)
+An easy way to transform an object into a class instance.
+
+```ts
+import { toModel } from "@kaviar/ejson";
+
+class Person {
+  firstname: string;
+  lastname: string;
+
+  get fullname() {
+    return `${this.firstname} ${this.lastname}`;
+  }
+}
+
+toModel(Person, {
+  firstname: "John",
+  lastname: "Smith",
+});
+```
